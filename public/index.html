@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sales Analytics Dashboard (PHP)</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Segoe UI', sans-serif; background: #f4f6f9; color: #2c3e50; }
+  header { background: #1f2937; color: #fff; padding: 14px 24px; display: flex;
+           align-items: center; gap: 24px; flex-wrap: wrap; }
+  header h1 { font-size: 1.2rem; }
+  header select { padding: 6px 10px; border-radius: 6px; border: none; }
+  nav { display: flex; gap: 6px; margin-left: auto; flex-wrap: wrap; }
+  nav button { background: #374151; color: #d1d5db; border: none; padding: 8px 16px;
+               border-radius: 6px; cursor: pointer; font-size: .9rem; }
+  nav button.active { background: #2563eb; color: #fff; }
+  main { max-width: 1200px; margin: 24px auto; padding: 0 16px; }
+  .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+           gap: 16px; margin-bottom: 24px; }
+  .card { background: #fff; border-radius: 10px; padding: 18px; box-shadow: 0 1px 3px rgba(0,0,0,.08); }
+  .card .label { font-size: .8rem; color: #6b7280; text-transform: uppercase; }
+  .card .value { font-size: 1.5rem; font-weight: 700; margin-top: 4px; }
+  .card .delta { font-size: .85rem; margin-top: 4px; }
+  .up { color: #059669; } .down { color: #dc2626; }
+  .panel { background: #fff; border-radius: 10px; padding: 20px;
+           box-shadow: 0 1px 3px rgba(0,0,0,.08); margin-bottom: 24px; }
+  .panel h2 { font-size: 1rem; margin-bottom: 14px; }
+  canvas { max-height: 360px; }
+  table { width: 100%; border-collapse: collapse; font-size: .9rem; }
+  th, td { padding: 8px 10px; text-align: right; border-bottom: 1px solid #e5e7eb; }
+  th:first-child, td:first-child { text-align: left; }
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  @media (max-width: 800px) { .grid2 { grid-template-columns: 1fr; } }
+  #insights li { margin: 6px 0 6px 18px; }
+</style>
+</head>
+<body>
+<header>
+  <h1>Sales Analytics</h1>
+  <label>Year:
+    <select id="year">
+      <option>2024</option><option>2023</option><option>2022</option>
+    </select>
+  </label>
+  <nav id="nav">
+    <button data-page="overview" class="active">Overview</button>
+    <button data-page="trends">Trends</button>
+    <button data-page="products">Products</button>
+    <button data-page="regions">Regions</button>
+    <button data-page="targets">Targets</button>
+  </nav>
+</header>
+<main id="content"></main>
+<script src="app.js"></script>
+</body>
+</html>
